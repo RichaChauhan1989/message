@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-pnc_(*+@k%rthfk&vm6@&ufv2=fve(p_!3cze0zhdpq&0*q1aw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app','localhost']
 
 
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'chat',
     'corsheaders',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE =[
@@ -155,16 +156,17 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 
 ]
 
-CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+#CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',  # Add this line
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
 
 # CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
 # CORS_ALLOW_CREDENTIALS = True
